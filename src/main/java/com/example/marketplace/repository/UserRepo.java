@@ -1,9 +1,14 @@
 package com.example.marketplace.repository;
 
-import com.example.marketplace.model.User;
-import org.springframework.data.repository.CrudRepository;
+import com.example.marketplace.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface UserRepo extends CrudRepository<User, Long> {
-    User findByEmail(String email);
+import java.util.Optional;
 
+@Repository
+public interface UserRepo extends JpaRepository<User, Long> {
+    Optional<User> findByEmail(String email);
+
+    void deleteById(Long id);
 }

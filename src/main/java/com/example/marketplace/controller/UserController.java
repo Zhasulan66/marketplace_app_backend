@@ -2,31 +2,18 @@ package com.example.marketplace.controller;
 
 import com.example.marketplace.exception.UserAlreadyExistException;
 import com.example.marketplace.exception.UserNotFoundException;
-import com.example.marketplace.model.User;
+import com.example.marketplace.entity.User;
 import com.example.marketplace.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-
 @RequestMapping("/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
-
-    @PostMapping
-    public ResponseEntity registration(@RequestBody User user) {
-        try {
-            userService.registration(user);
-            return ResponseEntity.ok(user);
-        } catch  (UserAlreadyExistException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("something went wrong user");
-        }
-    }
 
 
     @GetMapping("/{id}")

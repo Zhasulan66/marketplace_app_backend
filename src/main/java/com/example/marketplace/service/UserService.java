@@ -2,9 +2,8 @@ package com.example.marketplace.service;
 
 import com.example.marketplace.exception.UserAlreadyExistException;
 import com.example.marketplace.exception.UserNotFoundException;
-import com.example.marketplace.model.User;
+import com.example.marketplace.entity.User;
 import com.example.marketplace.repository.UserRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,6 +27,10 @@ public class UserService {
 
     public User getOne(Long id) throws UserNotFoundException {
         return userRepo.findById(id).orElseThrow(() -> new UserNotFoundException("User not found"));
+    }
+
+    public User getUser(String email) throws UserNotFoundException {
+        return userRepo.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found"));
     }
 
     public Long delete(Long id) {
