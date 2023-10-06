@@ -1,5 +1,6 @@
 package com.example.marketplace.service;
 
+import com.example.marketplace.entity.Category;
 import com.example.marketplace.exception.UserAlreadyExistException;
 import com.example.marketplace.exception.UserNotFoundException;
 import com.example.marketplace.entity.User;
@@ -7,6 +8,7 @@ import com.example.marketplace.repository.UserRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -25,8 +27,8 @@ public class UserService {
         return userRepo.save(user);
     }
 
-    public User getOne(Long id) throws UserNotFoundException {
-        return userRepo.findById(id).orElseThrow(() -> new UserNotFoundException("User not found"));
+    public Optional<User> getUserById(Long id) {
+        return userRepo.findById(id);
     }
 
     public User getUser(String email) throws UserNotFoundException {

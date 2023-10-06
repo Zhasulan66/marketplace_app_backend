@@ -19,9 +19,7 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity getOneUser(@PathVariable("id") Long id) {
         try {
-            return ResponseEntity.ok(userService.getOne(id));
-        } catch (UserNotFoundException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.ok(userService.getUserById(id));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("something went wrong");
         }
